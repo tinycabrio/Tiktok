@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Forum - Community Forum</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .threads-section {
+            background: var(--bg-primary);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .forum-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+        }
+
+        .forum-header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .forum-header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .threads-header {
+            padding: 20px;
+            background: var(--bg-secondary);
+            border-bottom: 2px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .threads-header h2 {
+            font-size: 20px;
+        }
+
+        .new-thread-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .new-thread-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .thread-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto auto;
+            gap: 20px;
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .thread-item:hover {
+            background: var(--bg-secondary);
+        }
+
+        .thread-status {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .thread-status.new {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .thread-status.hot {
+            background: linear-gradient(135deg, #f39c12 0%, #e74c3c 100%);
+            color: white;
+        }
+
+        .thread-status.locked {
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+        }
+
+        .thread-info h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .thread-info h3 a {
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .thread-info h3 a:hover {
+            color: var(--primary-color);
+        }
+
+        .thread-badges {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .badge {
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge.pinned {
+            background: #f39c12;
+            color: white;
+        }
+
+        .badge.locked {
+            background: var(--text-secondary);
+            color: white;
+        }
+
+        .badge.hot {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .thread-author {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .thread-author strong {
+            color: var(--primary-color);
+        }
+
+        .thread-stats {
+            display: flex;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .thread-stats .stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .thread-stats .number {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .thread-stats .label {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .pagination {
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .page-btn {
+            padding: 8px 15px;
+            border: 2px solid var(--border-color);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .page-btn:hover,
+        .page-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: transparent;
+        }
+
+        .page-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-comments"></i>
+                    <h1>Community Forum</h1>
+                </div>
+                <nav class="nav">
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home"></i> Startseite</a></li>
+                        <li><a href="#"><i class="fas fa-users"></i> Mitglieder</a></li>
+                        <li><a href="#"><i class="fas fa-search"></i> Suche</a></li>
+                    </ul>
+                </nav>
+                <div class="user-actions">
+                    <button class="btn btn-primary" id="loginBtn">Anmelden</button>
+                    <button class="btn btn-secondary" id="registerBtn">Registrieren</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Forum Header -->
+    <section class="forum-header">
+        <div class="container">
+            <h1><i class="fas fa-gamepad"></i> Gaming</h1>
+            <p>Alles rund um Videospiele</p>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="index.html"><i class="fas fa-home"></i> Forum</a>
+            <span style="margin: 0 10px; color: var(--text-secondary);">/</span>
+            <span>Gaming</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="content-wrapper">
+                <!-- Threads Section -->
+                <div class="threads-section">
+                    <div class="threads-header">
+                        <h2>Themen</h2>
+                        <button class="new-thread-btn">
+                            <i class="fas fa-plus"></i>
+                            Neues Thema
+                        </button>
+                    </div>
+
+                    <div class="threads-list">
+                        <!-- Thread 1 -->
+                        <div class="thread-item">
+                            <div class="thread-status hot">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <div class="thread-info">
+                                <div class="thread-badges">
+                                    <span class="badge pinned">Angepinnt</span>
+                                    <span class="badge hot">Hot</span>
+                                </div>
+                                <h3><a href="thread.html">Beste Multiplayer Games 2026</a></h3>
+                                <div class="thread-author">
+                                    von <strong>GamerX</strong> • vor 30 Minuten
+                                </div>
+                            </div>
+                            <div class="thread-stats">
+                                <div class="stat">
+                                    <span class="number">156</span>
+                                    <span class="label">Antworten</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="number">2.4K</span>
+                                    <span class="label">Aufrufe</span>
+                                </div>
+                            </div>
+                            <div class="forum-last-post">
+                                <div class="last-post-info">
+                                    <a href="#" class="thread-title">Letzter Beitrag</a>
+                                    <div class="post-meta">
+                                        <span class="author">von <strong>ProGamer</strong></span>
+                                        <span class="time"><i class="far fa-clock"></i> vor 2 Minuten</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Thread 2 -->
+                        <div class="thread-item">
+                            <div class="thread-status new">
+                                <i class="fas fa-comment"></i>
+                            </div>
+                            <div class="thread-info">
+                                <h3><a href="thread.html">Welches Gaming-Headset nutzt ihr?</a></h3>
+                                <div class="thread-author">
+                                    von <strong>AudioFan</strong> • vor 1 Stunde
+                                </div>
+                            </div>
+                            <div class="thread-stats">
+                                <div class="stat">
+                                    <span class="number">23</span>
+                                    <span class="label">Antworten</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="number">445</span>
+                                    <span class="label">Aufrufe</span>
+                                </div>
+                            </div>
+                            <div class="forum-last-post">
+                                <div class="last-post-info">
+                                    <a href="#" class="thread-title">Letzter Beitrag</a>
+                                    <div class="post-meta">
+                                        <span class="author">von <strong>TechGuru</strong></span>
+                                        <span class="time"><i class="far fa-clock"></i> vor 15 Minuten</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Thread 3 -->
+                        <div class="thread-item">
+                            <div class="thread-status new">
+                                <i class="fas fa-comment"></i>
+                            </div>
+                            <div class="thread-info">
+                                <h3><a href="thread.html">Tipps für Anfänger in CS2</a></h3>
+                                <div class="thread-author">
+                                    von <strong>CSPlayer</strong> • vor 2 Stunden
+                                </div>
+                            </div>
+                            <div class="thread-stats">
+                                <div class="stat">
+                                    <span class="number">45</span>
+                                    <span class="label">Antworten</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="number">892</span>
+                                    <span class="label">Aufrufe</span>
+                                </div>
+                            </div>
+                            <div class="forum-last-post">
+                                <div class="last-post-info">
+                                    <a href="#" class="thread-title">Letzter Beitrag</a>
+                                    <div class="post-meta">
+                                        <span class="author">von <strong>ProShooter</strong></span>
+                                        <span class="time"><i class="far fa-clock"></i> vor 20 Minuten</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Thread 4 -->
+                        <div class="thread-item">
+                            <div class="thread-status locked">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div class="thread-info">
+                                <div class="thread-badges">
+                                    <span class="badge locked">Geschlossen</span>
+                                </div>
+                                <h3><a href="thread.html">Die besten RPGs aller Zeiten</a></h3>
+                                <div class="thread-author">
+                                    von <strong>RPGFan</strong> • vor 3 Stunden
+                                </div>
+                            </div>
+                            <div class="thread-stats">
+                                <div class="stat">
+                                    <span class="number">234</span>
+                                    <span class="label">Antworten</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="number">5.2K</span>
+                                    <span class="label">Aufrufe</span>
+                                </div>
+                            </div>
+                            <div class="forum-last-post">
+                                <div class="last-post-info">
+                                    <a href="#" class="thread-title">Letzter Beitrag</a>
+                                    <div class="post-meta">
+                                        <span class="author">von <strong>Moderator</strong></span>
+                                        <span class="time"><i class="far fa-clock"></i> vor 1 Stunde</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Thread 5 -->
+                        <div class="thread-item">
+                            <div class="thread-status new">
+                                <i class="fas fa-comment"></i>
+                            </div>
+                            <div class="thread-info">
+                                <h3><a href="thread.html">Elden Ring DLC Diskussion</a></h3>
+                                <div class="thread-author">
+                                    von <strong>SoulsLover</strong> • vor 4 Stunden
+                                </div>
+                            </div>
+                            <div class="thread-stats">
+                                <div class="stat">
+                                    <span class="number">67</span>
+                                    <span class="label">Antworten</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="number">1.3K</span>
+                                    <span class="label">Aufrufe</span>
+                                </div>
+                            </div>
+                            <div class="forum-last-post">
+                                <div class="last-post-info">
+                                    <a href="#" class="thread-title">Letzter Beitrag</a>
+                                    <div class="post-meta">
+                                        <span class="author">von <strong>DarkKnight</strong></span>
+                                        <span class="time"><i class="far fa-clock"></i> vor 45 Minuten</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Thread 6 -->
+                        <div class="thread-item">
+                            <div class="thread-status new">
+                                <i class="fas fa-comment"></i>
+                            </div>
+                            <div class="thread-info">
+                                <h3><a href="thread.html">Suche Gaming-Partner für Co-op</a></h3>
+                                <div class="thread-author">
+                                    von <strong>CoopPlayer</strong> • vor 5 Stunden
+                                </div>
+                            </div>
+                            <div class="thread-stats">
+                                <div class="stat">
+                                    <span class="number">12</span>
+                                    <span class="label">Antworten</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="number">234</span>
+                                    <span class="label">Aufrufe</span>
+                                </div>
+                            </div>
+                            <div class="forum-last-post">
+                                <div class="last-post-info">
+                                    <a href="#" class="thread-title">Letzter Beitrag</a>
+                                    <div class="post-meta">
+                                        <span class="author">von <strong>TeamPlayer</strong></span>
+                                        <span class="time"><i class="far fa-clock"></i> vor 1 Stunde</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <button class="page-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <button class="page-btn">4</button>
+                        <button class="page-btn">5</button>
+                        <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <!-- Forum Info -->
+                    <div class="widget">
+                        <div class="widget-header">
+                            <i class="fas fa-info-circle"></i>
+                            <h3>Forum Info</h3>
+                        </div>
+                        <div class="widget-content">
+                            <div class="stats-list">
+                                <div class="stat-row">
+                                    <span class="label">Themen:</span>
+                                    <span class="value">876</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="label">Beiträge:</span>
+                                    <span class="value">12,345</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="label">Moderatoren:</span>
+                                    <span class="value"><a href="#">Admin</a>, <a href="#">ModGamer</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Online Users -->
+                    <div class="widget">
+                        <div class="widget-header">
+                            <i class="fas fa-users"></i>
+                            <h3>Online in Gaming</h3>
+                        </div>
+                        <div class="widget-content">
+                            <div class="online-stats">
+                                <div class="stat-item">
+                                    <span class="number">45</span>
+                                    <span class="label">Online</span>
+                                </div>
+                            </div>
+                            <div class="online-users">
+                                <span class="user-badge">GamerX</span>
+                                <span class="user-badge">ProGamer</span>
+                                <span class="user-badge">CSPlayer</span>
+                                <span class="user-badge">AudioFan</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Similar Forums -->
+                    <div class="widget">
+                        <div class="widget-header">
+                            <i class="fas fa-link"></i>
+                            <h3>Ähnliche Foren</h3>
+                        </div>
+                        <div class="widget-content">
+                            <div class="stats-list">
+                                <div class="stat-row">
+                                    <span class="label"><a href="forum.html?category=creative">Kreativ & Medien</a></span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="label"><a href="forum.html?category=offtopic">Off-Topic</a></span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="label"><a href="forum.html?category=discussions">Allgemeine Diskussionen</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Community Forum</h4>
+                    <p>Die beste Community für alle Themen</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="#">Über uns</a></li>
+                        <li><a href="#">Regeln</a></li>
+                        <li><a href="#">Kontakt</a></li>
+                        <li><a href="#">Impressum</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Folge uns</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Community Forum. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Anmelden</h2>
+            <form class="auth-form">
+                <div class="form-group">
+                    <label for="loginUsername">Benutzername oder E-Mail</label>
+                    <input type="text" id="loginUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Passwort</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <div class="form-group checkbox">
+                    <input type="checkbox" id="rememberMe">
+                    <label for="rememberMe">Angemeldet bleiben</label>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Anmelden</button>
+                <div class="form-footer">
+                    <a href="#">Passwort vergessen?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Registrieren</h2>
+            <form class="auth-form">
+                <div class="form-group">
+                    <label for="regUsername">Benutzername</label>
+                    <input type="text" id="regUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">E-Mail</label>
+                    <input type="email" id="regEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Passwort</label>
+                    <input type="password" id="regPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPasswordConfirm">Passwort bestätigen</label>
+                    <input type="password" id="regPasswordConfirm" required>
+                </div>
+                <div class="form-group checkbox">
+                    <input type="checkbox" id="agreeTerms" required>
+                    <label for="agreeTerms">Ich akzeptiere die Nutzungsbedingungen</label>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Konto erstellen</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

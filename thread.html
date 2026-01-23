@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beste Multiplayer Games 2026 - Community Forum</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .thread-header {
+            background: var(--bg-primary);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+
+        .thread-title-section h1 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .thread-meta {
+            display: flex;
+            gap: 20px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .thread-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .action-btn {
+            padding: 8px 16px;
+            border: 2px solid var(--border-color);
+            background: var(--bg-primary);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .action-btn:hover {
+            background: var(--bg-secondary);
+            border-color: var(--primary-color);
+        }
+
+        .posts-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .post {
+            background: var(--bg-primary);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+        }
+
+        .post-author-info {
+            background: var(--bg-secondary);
+            padding: 20px;
+            text-align: center;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .author-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .author-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+
+        .author-role {
+            font-size: 12px;
+            padding: 3px 10px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .author-role.admin {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+        }
+
+        .author-role.moderator {
+            background: linear-gradient(135deg, #f39c12 0%, #d68910 100%);
+            color: white;
+        }
+
+        .author-role.member {
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+        }
+
+        .author-stats {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-align: left;
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        .author-stats div {
+            margin-bottom: 8px;
+        }
+
+        .post-content-wrapper {
+            padding: 20px;
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .post-date {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .post-number {
+            background: var(--bg-secondary);
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .post-body {
+            line-height: 1.8;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+
+        .post-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .post-action-btn {
+            padding: 6px 12px;
+            border: none;
+            background: var(--bg-secondary);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .post-action-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .post-signature {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed var(--border-color);
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .reply-section {
+            background: var(--bg-primary);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-top: 20px;
+        }
+
+        .reply-section h3 {
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .reply-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .reply-textarea {
+            min-height: 200px;
+            padding: 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            transition: all 0.3s ease;
+        }
+
+        .reply-textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .reply-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .formatting-tools {
+            display: flex;
+            gap: 5px;
+        }
+
+        .format-btn {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-primary);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .format-btn:hover {
+            background: var(--bg-secondary);
+        }
+
+        .quick-reply {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .quick-reply:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .thread-pagination {
+            background: var(--bg-primary);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-info {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-comments"></i>
+                    <h1>Community Forum</h1>
+                </div>
+                <nav class="nav">
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home"></i> Startseite</a></li>
+                        <li><a href="#"><i class="fas fa-users"></i> Mitglieder</a></li>
+                        <li><a href="#"><i class="fas fa-search"></i> Suche</a></li>
+                    </ul>
+                </nav>
+                <div class="user-actions">
+                    <button class="btn btn-primary" id="loginBtn">Anmelden</button>
+                    <button class="btn btn-secondary" id="registerBtn">Registrieren</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb" style="margin-top: 0;">
+        <div class="container">
+            <a href="index.html"><i class="fas fa-home"></i> Forum</a>
+            <span style="margin: 0 10px; color: var(--text-secondary);">/</span>
+            <a href="forum.html">Gaming</a>
+            <span style="margin: 0 10px; color: var(--text-secondary);">/</span>
+            <span>Beste Multiplayer Games 2026</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="content-wrapper">
+                <div>
+                    <!-- Thread Header -->
+                    <div class="thread-header">
+                        <div class="thread-title-section">
+                            <h1><i class="fas fa-fire" style="color: #e74c3c;"></i> Beste Multiplayer Games 2026</h1>
+                            <div class="thread-meta">
+                                <span><i class="fas fa-user"></i> Erstellt von <strong>GamerX</strong></span>
+                                <span><i class="far fa-clock"></i> vor 30 Minuten</span>
+                                <span><i class="fas fa-eye"></i> 2.4K Aufrufe</span>
+                                <span><i class="fas fa-comment"></i> 156 Antworten</span>
+                            </div>
+                        </div>
+                        <div class="thread-actions">
+                            <button class="action-btn"><i class="fas fa-star"></i> Folgen</button>
+                            <button class="action-btn"><i class="fas fa-share"></i> Teilen</button>
+                            <button class="action-btn"><i class="fas fa-flag"></i> Melden</button>
+                        </div>
+                    </div>
+
+                    <!-- Thread Pagination -->
+                    <div class="thread-pagination">
+                        <div class="page-info">Seite 1 von 8</div>
+                        <div class="pagination">
+                            <button class="page-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                            <button class="page-btn active">1</button>
+                            <button class="page-btn">2</button>
+                            <button class="page-btn">3</button>
+                            <button class="page-btn">4</button>
+                            <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Posts -->
+                    <div class="posts-section">
+                        <!-- Post 1 (Original Post) -->
+                        <div class="post">
+                            <div class="post-author-info">
+                                <div class="author-avatar">GX</div>
+                                <div class="author-name">GamerX</div>
+                                <div class="author-role member">Mitglied</div>
+                                <div class="author-stats">
+                                    <div><strong>Beiträge:</strong> 1,245</div>
+                                    <div><strong>Likes:</strong> 3,421</div>
+                                    <div><strong>Dabei seit:</strong> Jan 2024</div>
+                                    <div><strong>Ort:</strong> Berlin</div>
+                                </div>
+                            </div>
+                            <div class="post-content-wrapper">
+                                <div class="post-header">
+                                    <div class="post-date">
+                                        <i class="far fa-clock"></i> 23. Januar 2026, 14:30
+                                    </div>
+                                    <div class="post-number">#1</div>
+                                </div>
+                                <div class="post-body">
+                                    <p>Hey Leute!</p>
+                                    <p>Ich wollte mal eine Diskussion starten über die besten Multiplayer-Games in 2026. Was sind eure Favoriten und warum?</p>
+                                    <p>Meine Top 3:</p>
+                                    <ol>
+                                        <li><strong>Counter-Strike 2</strong> - Einfach der Klassiker, aber immer noch fantastisch. Die neuen Updates haben das Game nochmal verbessert.</li>
+                                        <li><strong>Valorant</strong> - Perfekte Mischung aus CS und Abilities. Die Taktik-Komponente macht richtig Spaß.</li>
+                                        <li><strong>Elden Ring Co-op</strong> - Mit Freunden durch die Lands Between zu ziehen ist einfach episch!</li>
+                                    </ol>
+                                    <p>Was sind eure Must-Play Multiplayer-Games 2026? Bin gespannt auf eure Meinungen!</p>
+                                </div>
+                                <div class="post-footer">
+                                    <div class="post-actions">
+                                        <button class="post-action-btn"><i class="fas fa-thumbs-up"></i> Gefällt mir (23)</button>
+                                        <button class="post-action-btn"><i class="fas fa-reply"></i> Antworten</button>
+                                        <button class="post-action-btn"><i class="fas fa-quote-right"></i> Zitieren</button>
+                                    </div>
+                                </div>
+                                <div class="post-signature">
+                                    "Gaming is not a hobby, it's a lifestyle" - GamerX
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Post 2 -->
+                        <div class="post">
+                            <div class="post-author-info">
+                                <div class="author-avatar">PG</div>
+                                <div class="author-name">ProGamer</div>
+                                <div class="author-role moderator">Moderator</div>
+                                <div class="author-stats">
+                                    <div><strong>Beiträge:</strong> 5,672</div>
+                                    <div><strong>Likes:</strong> 12,340</div>
+                                    <div><strong>Dabei seit:</strong> Mrz 2023</div>
+                                    <div><strong>Ort:</strong> München</div>
+                                </div>
+                            </div>
+                            <div class="post-content-wrapper">
+                                <div class="post-header">
+                                    <div class="post-date">
+                                        <i class="far fa-clock"></i> 23. Januar 2026, 14:45
+                                    </div>
+                                    <div class="post-number">#2</div>
+                                </div>
+                                <div class="post-body">
+                                    <p>Gute Liste! Ich würde noch hinzufügen:</p>
+                                    <ul>
+                                        <li><strong>Apex Legends</strong> - Immer noch der beste Battle Royale IMO. Die Movement-Mechaniken sind unübertroffen.</li>
+                                        <li><strong>Rainbow Six Siege</strong> - Für alle die taktischen Shooter lieben.</li>
+                                        <li><strong>Overwatch 2</strong> - Hat sich richtig gut entwickelt in letzter Zeit!</li>
+                                    </ul>
+                                    <p>Was CS2 angeht, kann ich dir nur zustimmen. Die neue Engine macht das Game noch besser!</p>
+                                </div>
+                                <div class="post-footer">
+                                    <div class="post-actions">
+                                        <button class="post-action-btn"><i class="fas fa-thumbs-up"></i> Gefällt mir (15)</button>
+                                        <button class="post-action-btn"><i class="fas fa-reply"></i> Antworten</button>
+                                        <button class="post-action-btn"><i class="fas fa-quote-right"></i> Zitieren</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Post 3 -->
+                        <div class="post">
+                            <div class="post-author-info">
+                                <div class="author-avatar" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);">AD</div>
+                                <div class="author-name">Admin</div>
+                                <div class="author-role admin">Administrator</div>
+                                <div class="author-stats">
+                                    <div><strong>Beiträge:</strong> 8,234</div>
+                                    <div><strong>Likes:</strong> 25,671</div>
+                                    <div><strong>Dabei seit:</strong> Jan 2023</div>
+                                    <div><strong>Ort:</strong> Hamburg</div>
+                                </div>
+                            </div>
+                            <div class="post-content-wrapper">
+                                <div class="post-header">
+                                    <div class="post-date">
+                                        <i class="far fa-clock"></i> 23. Januar 2026, 15:00
+                                    </div>
+                                    <div class="post-number">#3</div>
+                                </div>
+                                <div class="post-body">
+                                    <p>Tolle Diskussion! Ich persönlich bin ein großer Fan von:</p>
+                                    <ul>
+                                        <li><strong>Helldivers 2</strong> - Co-op Spaß pur! Perfekt mit Freunden.</li>
+                                        <li><strong>The Finals</strong> - Innovatives Gameplay und mega destruktive Umgebungen.</li>
+                                        <li><strong>Palworld</strong> - Die Multiplayer-Features machen richtig Laune!</li>
+                                    </ul>
+                                    <p>Freut mich zu sehen, dass die Community so aktiv diskutiert. Weiter so! 🎮</p>
+                                </div>
+                                <div class="post-footer">
+                                    <div class="post-actions">
+                                        <button class="post-action-btn"><i class="fas fa-thumbs-up"></i> Gefällt mir (42)</button>
+                                        <button class="post-action-btn"><i class="fas fa-reply"></i> Antworten</button>
+                                        <button class="post-action-btn"><i class="fas fa-quote-right"></i> Zitieren</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Post 4 -->
+                        <div class="post">
+                            <div class="post-author-info">
+                                <div class="author-avatar">RP</div>
+                                <div class="author-name">RPGFan</div>
+                                <div class="author-role member">Mitglied</div>
+                                <div class="author-stats">
+                                    <div><strong>Beiträge:</strong> 567</div>
+                                    <div><strong>Likes:</strong> 892</div>
+                                    <div><strong>Dabei seit:</strong> Jun 2024</div>
+                                    <div><strong>Ort:</strong> Köln</div>
+                                </div>
+                            </div>
+                            <div class="post-content-wrapper">
+                                <div class="post-header">
+                                    <div class="post-date">
+                                        <i class="far fa-clock"></i> 23. Januar 2026, 15:12
+                                    </div>
+                                    <div class="post-number">#4</div>
+                                </div>
+                                <div class="post-body">
+                                    <p>Für mich ist <strong>Final Fantasy XIV</strong> immer noch das beste Multiplayer-Erlebnis! Die Story, die Community und die Raids sind einfach fantastisch.</p>
+                                    <p>Außerdem kann ich <strong>Sea of Thieves</strong> empfehlen - super entspannt mit Freunden auf hoher See!</p>
+                                </div>
+                                <div class="post-footer">
+                                    <div class="post-actions">
+                                        <button class="post-action-btn"><i class="fas fa-thumbs-up"></i> Gefällt mir (8)</button>
+                                        <button class="post-action-btn"><i class="fas fa-reply"></i> Antworten</button>
+                                        <button class="post-action-btn"><i class="fas fa-quote-right"></i> Zitieren</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reply Section -->
+                    <div class="reply-section">
+                        <h3><i class="fas fa-reply"></i> Schnellantwort</h3>
+                        <form class="reply-form">
+                            <textarea class="reply-textarea" placeholder="Schreibe deine Antwort hier..."></textarea>
+                            <div class="reply-actions">
+                                <div class="formatting-tools">
+                                    <button type="button" class="format-btn" title="Fett"><i class="fas fa-bold"></i></button>
+                                    <button type="button" class="format-btn" title="Kursiv"><i class="fas fa-italic"></i></button>
+                                    <button type="button" class="format-btn" title="Unterstrichen"><i class="fas fa-underline"></i></button>
+                                    <button type="button" class="format-btn" title="Link"><i class="fas fa-link"></i></button>
+                                    <button type="button" class="format-btn" title="Bild"><i class="fas fa-image"></i></button>
+                                    <button type="button" class="format-btn" title="Code"><i class="fas fa-code"></i></button>
+                                </div>
+                                <button type="submit" class="quick-reply">
+                                    <i class="fas fa-paper-plane"></i> Antworten
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <!-- Thread Tools -->
+                    <div class="widget">
+                        <div class="widget-header">
+                            <i class="fas fa-tools"></i>
+                            <h3>Thread Tools</h3>
+                        </div>
+                        <div class="widget-content">
+                            <div class="stats-list">
+                                <div class="stat-row">
+                                    <button class="action-btn" style="width: 100%; justify-content: center;">
+                                        <i class="fas fa-print"></i> Drucken
+                                    </button>
+                                </div>
+                                <div class="stat-row">
+                                    <button class="action-btn" style="width: 100%; justify-content: center;">
+                                        <i class="fas fa-bookmark"></i> Lesezeichen
+                                    </button>
+                                </div>
+                                <div class="stat-row">
+                                    <button class="action-btn" style="width: 100%; justify-content: center;">
+                                        <i class="fas fa-bell"></i> Benachrichtigungen
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Similar Threads -->
+                    <div class="widget">
+                        <div class="widget-header">
+                            <i class="fas fa-link"></i>
+                            <h3>Ähnliche Themen</h3>
+                        </div>
+                        <div class="widget-content">
+                            <div class="activity-list">
+                                <div class="activity-item">
+                                    <i class="fas fa-comment"></i>
+                                    <div class="activity-info">
+                                        <a href="#">Tipps für Anfänger in CS2</a>
+                                        <span class="time">45 Antworten</span>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <i class="fas fa-comment"></i>
+                                    <div class="activity-info">
+                                        <a href="#">Welches Gaming-Headset nutzt ihr?</a>
+                                        <span class="time">23 Antworten</span>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <i class="fas fa-comment"></i>
+                                    <div class="activity-info">
+                                        <a href="#">Die besten RPGs aller Zeiten</a>
+                                        <span class="time">234 Antworten</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Active Users -->
+                    <div class="widget">
+                        <div class="widget-header">
+                            <i class="fas fa-users"></i>
+                            <h3>Aktive Benutzer</h3>
+                        </div>
+                        <div class="widget-content">
+                            <p style="font-size: 14px; margin-bottom: 15px;">Aktuell lesen diesen Thread: <strong>12</strong></p>
+                            <div class="online-users">
+                                <span class="user-badge">GamerX</span>
+                                <span class="user-badge">ProGamer</span>
+                                <span class="user-badge">Admin</span>
+                                <span class="user-badge">RPGFan</span>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Community Forum</h4>
+                    <p>Die beste Community für alle Themen</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="#">Über uns</a></li>
+                        <li><a href="#">Regeln</a></li>
+                        <li><a href="#">Kontakt</a></li>
+                        <li><a href="#">Impressum</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Folge uns</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Community Forum. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Anmelden</h2>
+            <form class="auth-form">
+                <div class="form-group">
+                    <label for="loginUsername">Benutzername oder E-Mail</label>
+                    <input type="text" id="loginUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Passwort</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <div class="form-group checkbox">
+                    <input type="checkbox" id="rememberMe">
+                    <label for="rememberMe">Angemeldet bleiben</label>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Anmelden</button>
+                <div class="form-footer">
+                    <a href="#">Passwort vergessen?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Registrieren</h2>
+            <form class="auth-form">
+                <div class="form-group">
+                    <label for="regUsername">Benutzername</label>
+                    <input type="text" id="regUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">E-Mail</label>
+                    <input type="email" id="regEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Passwort</label>
+                    <input type="password" id="regPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPasswordConfirm">Passwort bestätigen</label>
+                    <input type="password" id="regPasswordConfirm" required>
+                </div>
+                <div class="form-group checkbox">
+                    <input type="checkbox" id="agreeTerms" required>
+                    <label for="agreeTerms">Ich akzeptiere die Nutzungsbedingungen</label>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Konto erstellen</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Handle reply form submission
+        document.querySelector('.reply-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const textarea = this.querySelector('.reply-textarea');
+            if (textarea.value.trim()) {
+                alert('Antwort-Funktion ist noch nicht implementiert.\n\nDein Beitrag:\n' + textarea.value);
+                textarea.value = '';
+            }
+        });
+
+        // Format buttons
+        const formatButtons = document.querySelectorAll('.format-btn');
+        formatButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const textarea = document.querySelector('.reply-textarea');
+                const title = this.getAttribute('title');
+                alert(title + '-Funktion würde hier den ausgewählten Text formatieren.');
+            });
+        });
+    </script>
+</body>
+</html>
