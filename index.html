@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrandForum - Community Forum</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<!-- TOP HEADER BAR -->
+<div id="topheader">
+    <div class="smallLogo">
+        <a href="index.html">
+            <img src="https://placehold.co/120x30/1a4a6e/ffffff?text=GrandForum" alt="GrandForum Logo">
+        </a>
+    </div>
+    <div class="search">
+        <form id="searchForm" action="#">
+            <input type="text" id="searchInput" placeholder="Suche...">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+    </div>
+    <div class="settings">
+        <a href="#"><i class="fas fa-home"></i> Startseite</a>
+        <a href="#"><i class="fas fa-info-circle"></i> Über uns</a>
+        <a href="#"><i class="fas fa-envelope"></i> Kontakt</a>
+    </div>
+    <div class="login">
+        <a href="#" id="loginBtn"><i class="fas fa-sign-in-alt"></i> Anmelden</a>
+        <a href="#" id="registerBtn" class="register-link"><i class="fas fa-user-plus"></i> Registrieren</a>
+    </div>
+</div>
+
+<!-- SIDE TOGGLE BUTTON -->
+<div id="sideToggle" class="highlight-bg">&#10095;</div>
+
+<!-- SIDEBAR -->
+<div id="side">
+    <div class="side-logo">
+        <a href="index.html">
+            <img src="https://placehold.co/180x60/1a4a6e/ffffff?text=GRAND" alt="Logo">
+        </a>
+    </div>
+    <ul id="nav">
+        <li class="nav-header">Navigation</li>
+        <li><a href="index.html" class="active"><i class="fas fa-home"></i> Hauptseite</a></li>
+        <li><a href="forum.html"><i class="fas fa-comments"></i> Diskussionen</a></li>
+        <li><a href="#"><i class="fas fa-users"></i> Mitglieder</a></li>
+        <li><a href="#"><i class="fas fa-calendar"></i> Veranstaltungen</a></li>
+        <li><a href="#"><i class="fas fa-book"></i> Ressourcen</a></li>
+        <li class="nav-header">Kategorien</li>
+        <li><a href="forum.html?cat=allgemein"><i class="fas fa-folder"></i> Allgemein</a></li>
+        <li><a href="forum.html?cat=projekte"><i class="fas fa-folder"></i> Projekte</a></li>
+        <li><a href="forum.html?cat=forschung"><i class="fas fa-folder"></i> Forschung</a></li>
+        <li><a href="forum.html?cat=offtopic"><i class="fas fa-folder"></i> Off-Topic</a></li>
+        <li class="nav-header">Tools</li>
+        <li><a href="#"><i class="fas fa-rss"></i> Letzte Änderungen</a></li>
+        <li><a href="#"><i class="fas fa-upload"></i> Datei hochladen</a></li>
+        <li><a href="#"><i class="fas fa-cog"></i> Einstellungen</a></li>
+    </ul>
+</div>
+
+<!-- OUTER HEADER (TAB NAV + SUBMENU) -->
+<div id="outerHeader">
+
+    <!-- MAIN TAB NAVIGATION -->
+    <div id="header">
+        <ul class="top-nav highlight-bg">
+            <li class="top-nav-element selected"><a class="tab-link active" href="index.html">Forum</a></li>
+            <li class="top-nav-element"><a class="tab-link" href="#">Mitglieder</a></li>
+            <li class="top-nav-element"><a class="tab-link" href="#">Projekte</a></li>
+            <li class="top-nav-element"><a class="tab-link" href="#">Berichte</a></li>
+            <li class="top-nav-element"><a class="tab-link" href="#">Veranstaltungen</a></li>
+            <li class="top-nav-element"><a class="tab-link" href="#">Ressourcen</a></li>
+            <li class="top-nav-element"><a class="tab-link" href="#">Über uns</a></li>
+        </ul>
+    </div>
+
+    <!-- SUB MENU -->
+    <div id="submenu" class="highlight-bg-sub">
+        <ul>
+            <li class="selected"><a href="index.html">Übersicht</a></li>
+            <li><a href="forum.html">Diskussionen</a></li>
+            <li><a href="#">Ankündigungen</a></li>
+            <li><a href="#">Regeln</a></li>
+            <li><a href="#">Archiv</a></li>
+        </ul>
+    </div>
+
+    <!-- MAIN BODY CONTENT -->
+    <div id="mBody">
+        <div id="bodyContent">
+
+            <!-- BREADCRUMB -->
+            <div id="breadcrumb">
+                <a href="index.html"><i class="fas fa-home"></i> Hauptseite</a>
+                <span class="sep">&rsaquo;</span>
+                <span>Forum</span>
+            </div>
+
+            <!-- PAGE TITLE -->
+            <h1 class="firstHeading">Community Forum</h1>
+
+            <!-- FORUM OVERVIEW LAYOUT -->
+            <div class="forum-layout">
+
+                <!-- MAIN FORUM CONTENT -->
+                <div class="forum-main">
+
+                    <!-- CATEGORY: Allgemein -->
+                    <div class="forum-category">
+                        <div class="cat-title highlight-bg">
+                            <i class="fas fa-folder-open"></i> Allgemein
+                        </div>
+                        <table class="forum-table">
+                            <thead>
+                                <tr>
+                                    <th class="col-forum">Forum</th>
+                                    <th class="col-stats">Themen</th>
+                                    <th class="col-stats">Beiträge</th>
+                                    <th class="col-last">Letzter Beitrag</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="forum-row">
+                                    <td class="col-forum">
+                                        <div class="forum-icon-wrap">
+                                            <span class="forum-dot new"></span>
+                                        </div>
+                                        <div class="forum-info">
+                                            <a href="forum.html" class="forum-name">Ankündigungen</a>
+                                            <div class="forum-desc">Wichtige Informationen und Neuigkeiten</div>
+                                            <div class="forum-mods">Moderatoren: <a href="#">Admin</a></div>
+                                        </div>
+                                    </td>
+                                    <td class="col-stats">156</td>
+                                    <td class="col-stats">2.4K</td>
+                                    <td class="col-last">
+                                        <a href="thread.html">Neue Features verfügbar</a><br>
+                                        <span class="last-by">von <a href="#">Admin</a></span><br>
+                                        <span class="last-time">23. Jan 2026, 14:30</span>
+                                    </td>
+                                </tr>
+                                <tr class="forum-row">
+                                    <td class="col-forum">
+                                        <div class="forum-icon-wrap">
+                                            <span class="forum-dot"></span>
+                                        </div>
+                                        <div class="forum-info">
+                                            <a href="forum.html" class="forum-name">Support &amp; Hilfe</a>
+                                            <div class="forum-desc">Fragen und Antworten zur Plattform</div>
+                                        </div>
+                                    </td>
+                                    <td class="col-stats">432</td>
+                                    <td class="col-stats">5.1K</td>
+                                    <td class="col-last">
+                                        <a href="thread.html">Wie ändere ich mein Passwort?</a><br>
+                                        <span class="last-by">von <a href="#">MaxMuster</a></span><br>
+                                        <span class="last-time">23. Jan 2026, 13:45</span>
+                                    </td>
+                                </tr>
+                                <tr class="forum-row">
+                                    <td class="col-forum">
+                                        <div class="forum-icon-wrap">
+                                            <span class="forum-dot new"></span>
+                                        </div>
+                                        <div class="forum-info">
+                                            <a href="forum.html" class="forum-name">Vorschläge &amp; Feedback</a>
+                                            <div class="forum-desc">Deine Ideen für die Community</div>
+                                        </div>
+                                    </td>
+                                    <td class="col-stats">198</td>
+                                    <td class="col-stats">1.8K</td>
+                                    <td class="col-last">
+                                        <a href="thread.html">Dark Mode Feature Request</a><br>
+                                        <span class="last-by">von <a href="#">TechFan99</a></span><br>
+                                        <span class="last-time">23. Jan 2026, 12:00</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- CATEGORY: Community -->
+                    <div class="forum-category">
+                        <div class="cat-title highlight-bg">
+                            <i class="fas fa-folder-open"></i> Community
+                        </div>
+                        <table class="forum-table">
+                            <thead>
+                                <tr>
+                                    <th class="col-forum">Forum</th>
+                                    <th class="col-stats">Themen</th>
+                                    <th class="col-stats">Beiträge</th>
+                                    <th class="col-last">Letzter Beitrag</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="forum-row">
+                                    <td class="col-forum">
+                                        <div class="forum-icon-wrap">
+                                            <span class="forum-dot new"></span>
+                                        </div>
+                                        <div class="forum-info">
+                                            <a href="forum.html" class="forum-name">Allgemeine Diskussionen</a>
+                                            <div class="forum-desc">Diskutiere über alles Mögliche</div>
+                                        </div>
+                                    </td>
+                                    <td class="col-stats">1.2K</td>
+                                    <td class="col-stats">18.5K</td>
+                                    <td class="col-last">
+                                        <a href="thread.html">Was hört ihr gerade?</a><br>
+                                        <span class="last-by">von <a href="#">MusicLover</a></span><br>
+                                        <span class="last-time">23. Jan 2026, 15:10</span>
+                                    </td>
+                                </tr>
+                                <tr class="forum-row">
+                                    <td class="col-forum">
+                                        <div class="forum-icon-wrap">
+                                            <span class="forum-dot new"></span>
+                                        </div>
+                                        <div class="forum-info">
+                                            <a href="forum.html" class="forum-name">Forschung &amp; Wissenschaft</a>
+                                            <div class="forum-desc">Austausch zu Forschungsthemen</div>
+                                        </div>
+                                    </td>
+                                    <td class="col-stats">876</td>
+                                    <td class="col-stats">12.3K</td>
+                                    <td class="col-last">
+                                        <a href="thread.html">Neue Publikationen 2026</a><br>
+                                        <span class="last-by">von <a href="#">DrScience</a></span><br>
+                                        <span class="last-time">23. Jan 2026, 11:20</span>
+                                    </td>
+                                </tr>
+                                <tr class="forum-row">
+                                    <td class="col-forum">
+                                        <div class="forum-icon-wrap">
+                                            <span class="forum-dot"></span>
+                                        </div>
+                                        <div class="forum-info">
+                                            <a href="forum.html" class="forum-name">Projekte &amp; Zusammenarbeit</a>
+                                            <div class="forum-desc">Koordination und Projektdiskussionen</div>
+                                        </div>
+                                    </td>
+                                    <td class="col-stats">345</td>
+                                    <td class="col-stats">4.2K</td>
+                                    <td class="col-last">
+                                        <a href="thread.html">Projekt Alpha Update</a><br>
+                                        <span class="last-by">von <a href="#">TeamLead</a></span><br>
+                                        <span class="last-time">23. Jan 2026, 09:00</span>
+                                    </td>
+                                </tr>
+                                <tr class="forum-row">
+                                    <td class="col-forum">
+                                        <div class="forum-icon-wrap">
+                                            <span class="forum-dot new"></span>
+                                        </div>
+                                        <div class="forum-info">
+                                            <a href="forum.html" class="forum-name">Off-Topic</a>
+                                            <div class="forum-desc">Alles was sonst nirgends passt</div>
+                                        </div>
+                                    </td>
+                                    <td class="col-stats">654</td>
+                                    <td class="col-stats">9.7K</td>
+                                    <td class="col-last">
+                                        <a href="thread.html">Lustige Bilder Thread</a><br>
+                                        <span class="last-by">von <a href="#">FunnyGuy</a></span><br>
+                                        <span class="last-time">23. Jan 2026, 15:05</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- FORUM STATS BAR -->
+                    <div class="forum-stats-bar">
+                        <span><i class="fas fa-comments"></i> Gesamt Themen: <strong>3,861</strong></span>
+                        <span><i class="fas fa-comment-dots"></i> Gesamt Beiträge: <strong>54,200</strong></span>
+                        <span><i class="fas fa-users"></i> Mitglieder: <strong>12,543</strong></span>
+                        <span><i class="fas fa-user-plus"></i> Neu: <a href="#">NewUser123</a></span>
+                        <span class="online-count"><i class="fas fa-circle online-dot"></i> <strong>243</strong> online</span>
+                    </div>
+
+                </div>
+
+                <!-- RIGHT SIDEBAR (WIKI-STYLE) -->
+                <div class="forum-sidebar-right">
+
+                    <div class="wiki-box">
+                        <div class="wiki-box-title">Online Benutzer</div>
+                        <div class="wiki-box-content">
+                            <div class="online-stats">
+                                <span class="badge-pill">243 Online</span>
+                                <span class="badge-pill secondary">18 Gäste</span>
+                            </div>
+                            <div class="user-list">
+                                <a href="#" class="user-tag">Admin</a>
+                                <a href="#" class="user-tag">MaxMuster</a>
+                                <a href="#" class="user-tag">TechFan99</a>
+                                <a href="#" class="user-tag">GamerX</a>
+                                <a href="#" class="user-tag mod">Moderator</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wiki-box">
+                        <div class="wiki-box-title">Neueste Aktivität</div>
+                        <div class="wiki-box-content activity-list">
+                            <div class="activity-entry">
+                                <i class="fas fa-comment"></i>
+                                <a href="thread.html">Wie ändere ich mein Passwort?</a>
+                                <span class="act-meta">MaxMuster &bull; vor 5 Min</span>
+                            </div>
+                            <div class="activity-entry">
+                                <i class="fas fa-plus"></i>
+                                <a href="thread.html">Neue Publikationen 2026</a>
+                                <span class="act-meta">DrScience &bull; vor 15 Min</span>
+                            </div>
+                            <div class="activity-entry">
+                                <i class="fas fa-comment"></i>
+                                <a href="thread.html">Lustige Bilder Thread</a>
+                                <span class="act-meta">FunnyGuy &bull; vor 30 Min</span>
+                            </div>
+                            <div class="activity-entry">
+                                <i class="fas fa-comment"></i>
+                                <a href="thread.html">Dark Mode Feature Request</a>
+                                <span class="act-meta">TechFan99 &bull; vor 1 Std</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wiki-box">
+                        <div class="wiki-box-title">Nützliche Links</div>
+                        <div class="wiki-box-content">
+                            <ul class="link-list">
+                                <li><a href="#"><i class="fas fa-book"></i> Forum-Regeln</a></li>
+                                <li><a href="#"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                                <li><a href="#"><i class="fas fa-shield-alt"></i> Datenschutz</a></li>
+                                <li><a href="#"><i class="fas fa-envelope"></i> Kontakt</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- FOOTER -->
+            <div id="footer">
+                <ul id="f-list">
+                    <li><a href="#">Über uns</a></li>
+                    <li><a href="#">Datenschutz</a></li>
+                    <li><a href="#">Nutzungsbedingungen</a></li>
+                    <li><a href="#">Impressum</a></li>
+                    <li><a href="#">Kontakt</a></li>
+                </ul>
+                <div id="f-poweredby">
+                    &copy; 2026 GrandForum &mdash; Community Platform
+                </div>
+            </div>
+
+        </div><!-- /bodyContent -->
+    </div><!-- /mBody -->
+</div><!-- /outerHeader -->
+
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-header">
+            <span class="modal-title">Anmelden</span>
+            <span class="modal-close" data-target="loginModal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <label for="loginUser">Benutzername oder E-Mail</label>
+                    <input type="text" id="loginUser" placeholder="Benutzername">
+                </div>
+                <div class="form-group">
+                    <label for="loginPass">Passwort</label>
+                    <input type="password" id="loginPass" placeholder="Passwort">
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="rememberMe">
+                    <label for="rememberMe">Angemeldet bleiben</label>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Anmelden</button>
+                    <a href="#" class="forgot-link">Passwort vergessen?</a>
+                </div>
+                <div class="form-footer">
+                    Noch kein Konto? <a href="#" id="switchToRegister">Jetzt registrieren</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- REGISTER MODAL -->
+<div id="registerModal" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-header">
+            <span class="modal-title">Registrieren</span>
+            <span class="modal-close" data-target="registerModal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <form class="auth-form" id="registerForm">
+                <div class="form-group">
+                    <label for="regUser">Benutzername</label>
+                    <input type="text" id="regUser" placeholder="Gewünschter Benutzername">
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">E-Mail-Adresse</label>
+                    <input type="email" id="regEmail" placeholder="deine@email.de">
+                </div>
+                <div class="form-group">
+                    <label for="regPass">Passwort</label>
+                    <input type="password" id="regPass" placeholder="Sicheres Passwort">
+                </div>
+                <div class="form-group">
+                    <label for="regPass2">Passwort bestätigen</label>
+                    <input type="password" id="regPass2" placeholder="Passwort wiederholen">
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="agreeTerms" required>
+                    <label for="agreeTerms">Ich akzeptiere die <a href="#">Nutzungsbedingungen</a></label>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Konto erstellen</button>
+                </div>
+                <div class="form-footer">
+                    Bereits registriert? <a href="#" id="switchToLogin">Anmelden</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
